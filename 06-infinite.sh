@@ -3,8 +3,24 @@
 # the if statement had, if-then-fi
 # while loop has, while-do-done
 # true and false are also Unix commands
-while [ true ]; do
-  echo "infinite number of beer on the wall"
+
+echo "IP Address Lookup Tool"
+continue_lookup=true
+
+while [ "$continue_lookup" = true ]; do
+    echo -n "Enter a hostname to lookup: "
+    read hostname
+    
+    echo "Looking up $hostname..."
+    nslookup "$hostname"
+    
+    echo -n "Do you want to lookup another hostname? (y/n): "
+    read answer
+    
+    if [ "$answer" != "y" ] && [ "$answer" != "Y" ]; then
+        continue_lookup=false
+        echo "Goodbye!"
+    fi
 done
 
 # exercise: write a script that continues to look up
